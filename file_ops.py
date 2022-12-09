@@ -11,7 +11,6 @@ def write_time(file, time):
             f.write(time)
         else:
             f.write("\n" + time)
-    f.close()
 
 
 def str_to_date(str_list):
@@ -25,7 +24,6 @@ def select_date(date_list, date):
 def read_time(file):
     with open(file, 'r') as f:
         lines = f.read().splitlines()
-        f.close()
     return lines
 
 

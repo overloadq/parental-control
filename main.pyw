@@ -1,5 +1,5 @@
 import time
-from file_ops import read_time, write_time, str_to_date, select_date, sum_time, ConfigureTime, shutdown_handler
+from file_ops import read_time, write_time, str_to_date, select_date, sum_time, ConfigureTime
 from tkinter import *
 import os
 from datetime import datetime
@@ -27,6 +27,10 @@ m = hms[1]
 s = hms[2]
 
 
+def shutdown_handler():
+    """Save the current time to the file when the program exits."""
+    with open(time_file, "w") as f:
+        f.write(now_str)
 
 # creating Tk window
 root = Tk()
@@ -35,7 +39,7 @@ root = Tk()
 root.geometry("300x270")
 
 # at shutdown or restart execute shutdown_handler
-atexit.register(shutdown_handler(time_file))
+atexit.register(shutdown_handler)
 
 # Using title() to display a message in
 # the dialogue box of the message in the
