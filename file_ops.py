@@ -70,6 +70,11 @@ def time_delta(time2, time1):
     return (t2 - t1).total_seconds() / 60
 
 
+def shutdown_handler(time_file):
+    now_shutdown = get_current_date()
+    write_time(time_file, now_shutdown)
+
+
 class ConfigureTime:
 
     def __init__(self, time_per_day, max_time):

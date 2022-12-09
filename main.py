@@ -1,8 +1,9 @@
 import time
-from file_ops import read_time, write_time, str_to_date, select_date, sum_time, ConfigureTime
+from file_ops import read_time, write_time, str_to_date, select_date, sum_time, ConfigureTime, shutdown_handler
 from tkinter import *
 import os
 from datetime import datetime
+import atexit
 
 time_file = "c:\\temp\\time.txt"
 # maximum allowed time in seconds
@@ -25,11 +26,16 @@ h = hms[0]
 m = hms[1]
 s = hms[2]
 
+
+
 # creating Tk window
 root = Tk()
 
 # setting geometry of tk window
 root.geometry("300x270")
+
+# at shutdown or restart execute shutdown_handler
+atexit.register(shutdown_handler(time_file))
 
 # Using title() to display a message in
 # the dialogue box of the message in the
@@ -61,13 +67,11 @@ s = Label(root, width=3, font=("Arial", 18, ""), text="s")
 s.place(x=230, y=90)
 
 
-def submit():
+def make_window():
     try:
-        # the input provided by the user is
-        # stored in here :temp
         temp = int(hour.get()) * 3600 + int(minute.get()) * 60 + int(second.get())
     except:
-        print("Please input the right value")
+        print("Negative time error")
     while temp > -1:
 
         # divmod(firstvalue = temp//60, secondvalue = temp%60)
@@ -95,7 +99,7 @@ def submit():
 
         # when temp value = 0; then a messagebox pop's up
         # with a message:"Time's up"
-        if (temp == 0):
+        if temp == 0:
             # pgBar = tkinter.ttk.Progressbar(root, orient = HORIZONTAL, length=300, mode = "Timpul a expirat!")
             # pgBar.place(x=45, y=200)
             # messagebox.showinfo("Missy zice", "Timpul a expirat!")
@@ -119,5 +123,5 @@ def submit():
 # infinite loop which is required to
 # run tkinter program infinitely
 # until an interrupt occurs
-submit()
+make_window()
 root.mainloop()
