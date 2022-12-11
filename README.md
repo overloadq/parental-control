@@ -1,23 +1,19 @@
-# parental-control
+# Simple parental control
+# A simple script to allow only 1h/day 
 
-1. Add the on_shutdown script to Task Scheduler
+## Spending more than an hour a day in front of a computer can be harmful for kids
+    Physical problems like eye strain, neck and back pain, and carpal tunnel syndrome
+    Sleep problems
+    Difficulty focusing
+    Social isolation
+    Negative effects on mental and emotional well-being
 
-    Open the Task Scheduler by searching for it in the Start menu.
+To prevent these harms, it's important to:
 
-    In the Task Scheduler window, click on the "Action" menu and select "Create Task".
+    Limit a child's computer usage to a reasonable amount of time each day
+    Encourage them to engage in other activities that involve physical activity, social interaction, and creativity.
 
-    In the "Create Task" window, enter a name and description for the task, and select the user that the task should run as.
+###How to install
+To use this script, you will need to install Python on your computer, then copy the required files to a folder and add a shortcut to the script in the Windows startup folder. The script uses the c:\temp folder to store its data, so make sure that this folder exists.
 
-    Go to the "Triggers" tab, and click on the "New" button to create a new trigger for the task.
-
-    In the "New Trigger" window, select the "At log on" option, and then select the specific user that the task should run for from the "Settings" section.
-
-    Go to the "Actions" tab, and click on the "New" button to create a new action for the task.
-
-    In the "New Action" window, select the "Start a program" option, and then specify the path to the script that you want to run.
-
-    Click on the "OK" button to save the task.
-
-2. Rename the main py to main.pyw, add it to Windows Startup
-
-3. Create c:\temp\time.txt
+The script automatically shuts down the computer if the total usage time for a given day exceeds a specified maximum value (in seconds). This maximum time, known as "max_time", can be customized by editing the value in the script. If the cumulated usage time for a day exceeds this maximum, the script will shut down the computer to prevent further usage. This helps ensure that kids don't exceed a healthy amount of screen time each day.
